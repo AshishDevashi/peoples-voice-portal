@@ -74,53 +74,53 @@ const Blog = () => {
         <div className="container mx-auto px-4">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {filteredPosts.map((post) => (
-              <article
+              <Link
                 key={post.id}
-                className="group overflow-hidden rounded-xl bg-card shadow-sm transition-all duration-300 hover:shadow-lg"
+                to={`/blog/${post.slug}`}
+                className="group block overflow-hidden rounded-xl bg-card shadow-sm transition-all duration-300 hover:shadow-lg"
               >
-                {/* Image */}
-                <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={post.imageUrl}
-                    alt={post.title}
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  <Badge className={`absolute left-3 top-3 ${getCategoryColor(post.category)}`}>
-                    {post.category}
-                  </Badge>
-                </div>
+                <article>
+                  {/* Image */}
+                  <div className="relative aspect-video overflow-hidden">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <Badge className={`absolute left-3 top-3 ${getCategoryColor(post.category)}`}>
+                      {post.category}
+                    </Badge>
+                  </div>
 
-                {/* Content */}
-                <div className="p-5">
-                  <h2 className="mb-2 line-clamp-2 text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">
-                    {post.title}
-                  </h2>
-                  <p className="mb-4 line-clamp-3 text-sm text-muted-foreground">
-                    {post.excerpt}
-                  </p>
+                  {/* Content */}
+                  <div className="p-5">
+                    <h2 className="mb-2 line-clamp-2 text-xl font-bold text-card-foreground transition-colors group-hover:text-primary">
+                      {post.title}
+                    </h2>
+                    <p className="mb-4 line-clamp-3 text-sm text-muted-foreground">
+                      {post.excerpt}
+                    </p>
 
-                  {/* Meta */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        {post.author}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        {new Date(post.date).toLocaleDateString()}
+                    {/* Meta */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <User className="h-3 w-3" />
+                          {post.author}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          {new Date(post.date).toLocaleDateString()}
+                        </span>
+                      </div>
+                      <span className="flex items-center gap-1 text-sm font-medium text-primary transition-colors group-hover:text-primary/80">
+                        Read
+                        <ArrowRight className="h-3 w-3" />
                       </span>
                     </div>
-                    <Link
-                      to={`/blog/${post.slug}`}
-                      className="flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
-                    >
-                      Read
-                      <ArrowRight className="h-3 w-3" />
-                    </Link>
                   </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
 
